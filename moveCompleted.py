@@ -15,9 +15,11 @@ for root, subdirs, files in os.walk(DIRS):
         # If the file is encoded in H.265 it can go to the Organize directory.
         path = os.path.join(root, file)
 
+        # Since I use this NAS with a MacOS machine I get unwanted .DS_Store files that can just be ignored
         if 'DS' in file:
             continue
 
+        # All the files that already have the desired codec will be moved to the desired directory
         if '265' in file or 'HVENC' in file:
             shutil.move(path, Converted)
         else:
